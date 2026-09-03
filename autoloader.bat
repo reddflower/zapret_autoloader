@@ -78,7 +78,6 @@ start service.bat
 pause
 goto menu
 
-
 :: CHECK STATUS ========================================================
 
 :check_status
