@@ -99,6 +99,14 @@ for %%f in (general*.bat) do (
 )
 echo.
 
+if !all_count! equ 0 (
+echo.
+call :PrintRed "Generals not found"
+echo.
+pause
+goto menu
+)
+
 if !status_count! equ 0 (
 call :PrintRed "Total ^"Auto^": !status_count! / !all_count!"
 ) else (
@@ -130,6 +138,14 @@ for /f "delims=" %%F in ('powershell -NoProfile -Command "Get-ChildItem -Literal
     echo !count!. %%F
 )
 
+if !count! equ 0 (
+echo.
+call :PrintRed "Generals not found"
+echo.
+pause
+goto menu
+)
+
 pause
 
 echo.
@@ -157,6 +173,14 @@ set "count=0"
 for /f "delims=" %%F in ('powershell -NoProfile -Command "Get-ChildItem -LiteralPath '.' -Filter 'general*.bat' | Where-Object { $_.Name -notlike 'service*' } | Where-Object { $_.Name -notlike 'hello_world*' } | Sort-Object { [Regex]::Replace($_.Name, '(\d+)', { $args[0].Value.PadLeft(8, '0') }) } | ForEach-Object { $_.Name }"') do (
     set /a count+=1
     echo !count!. %%F
+)
+
+if !count! equ 0 (
+echo.
+call :PrintRed "Generals not found"
+echo.
+pause
+goto menu
 )
 
 pause
