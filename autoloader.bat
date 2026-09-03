@@ -4,6 +4,18 @@ setlocal enableDelayedExpansion
 
 color 0F
 
+if not exist "%~dp0service.bat" set "no-zapret=0"
+
+if "%no-zapret%"=="0" (
+    echo.
+    call :PrintRed "Zapret not found"
+    echo.
+    call :PrintYellow "Push AUTOLOADER.bat in Zapret folder"
+    echo.
+    pause
+    exit
+)
+
 :: COPY =========================================================
 
 if exist "generals_copy\" echo.
@@ -25,8 +37,10 @@ echo      1. Install AutoLoader
 echo      2. Uninstall AutoLoader
 echo      3. Check Status
 echo.
-echo      4. Open Zapret Service
-echo      5. Exit
+echo      4. Minecraft FIX
+echo.
+echo      5. Open Zapret Service
+echo      0. Exit
 echo.
 echo   ----------------------------------------
 echo.
@@ -36,8 +50,21 @@ set /p menu_choice=   Select option (1-5):
 if "%menu_choice%"=="1" goto service_updater
 if "%menu_choice%"=="2" goto service_uninstall
 if "%menu_choice%"=="3" goto check_status
-if "%menu_choice%"=="4" goto zapret_menu
-if "%menu_choice%"=="5" exit /b
+if "%menu_choice%"=="4" goto minecraft_fix
+if "%menu_choice%"=="5" goto zapret_menu
+if "%menu_choice%"=="0" exit /b
+
+:: Minecraft fix ========================================================
+
+:minecraft_fix
+cls
+
+echo.
+echo Coming soon...:
+echo.
+
+pause
+goto menu
 
 :: ZAPRET MENU ========================================================
 
@@ -48,7 +75,9 @@ echo.
 echo Starting Zapret...:
 start service.bat
 
+pause
 goto menu
+
 
 :: CHECK STATUS ========================================================
 
