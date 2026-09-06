@@ -44,7 +44,7 @@ echo      ZAPRET AUTOLOADER v!LOCAL_VERSION!
 ) else ( 
 set "new_version=avaible"
 echo      ZAPRET AUTOLOADER v!LOCAL_VERSION!
-call :PrintGreen "     NEW VERSION AVAIBLE: %GITHUB_VERSION% "
+call :PrintGreen "     NEW VERSION AVAILABLE: %GITHUB_VERSION% "
 )
 echo   ----------------------------------------
 echo.
